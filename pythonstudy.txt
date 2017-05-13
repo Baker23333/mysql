@@ -1,0 +1,38 @@
+import re
+
+def cre_dict(dict_p):#一个为词典里的所有关键词创建键值对，'name'是词典文件名字，num是计量数
+    file = open(dict_p)
+    name = file.name.split("/")[-1].split(".")[0]
+    item = [("name",name),("num",0)]
+    itemD = dict(item)
+    file.close()
+    return itemD
+
+def search_a(a,dir):
+    with open(dir) as file:
+        line = file.read()
+        output = re.findall(a,line)
+    return len(output)#打开词典文件，检索关键词a在评论中出现次数
+
+
+def HandleComment(dict_p,aim_d):
+    file = open(dict_p)
+    dict_t=cre_dict(dict_p)
+    for line in file.readlines():
+        a=line.strip()
+        dict_t['num']=dict_t['num']+search_a(a,dir)
+    file.close()
+    return dict_t
+
+dir =open('/home/czx/Downloads/数挖2017培训教学资料/week2 Python基础语言讲解/作业/词典/主题/主题.txt', 'r')
+#myDic = {}
+#for row in dir:    (key, value) = row.split("\n")
+#    myDic[key] = value
+#print myDic
+
+aim_d = open('/home/czx/Downloads/太空旅客.txt', 'r')
+for line in file.readlines():
+    print line
+file.close()
+
+
